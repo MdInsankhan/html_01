@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+body{background-color:#ADD8E6;}
+p{text-align:justify;}
+.hardware_details,td,th
+{
+border:1px solid black;
+padding:5px;
+text-align:center;
+}
+.hardware_details,table{
+border-collapse:collapse;
+}
+#network_details,td,th{
+border:1px solid black;
+padding:5px;
+}
+th{color:red;}
+</style>
+<meta charset="utf-8">
+<title>SIEM</title>
+
+</head>
+<body>
+<h2>SIEM Structure:</h2>
+<p><h2>IBM Security Qradar Implementation</h2></p>
+<p><h3>Introduction</h3></p>
+<p>This document contains the deployment architecture, prerequisites, and installation steps of IBM QRadar in the network environment. This document displays the overall Implementation Scope delivered in the IT infrastructure of United Commercial Bank Ltd.</p>
+<p><h3>About IBM QRadar SIEM Solution</h3></p>
+<p>IBM QRadar security intelligence platform provides a unified architecture for collecting, storing, analyzing, and querying log, threat, vulnerability, and risk-related data. As a result, analysts, operators & auditors using any of the modules are benefitted from the following points:</p>
+<p>• Unified collection, aggregation, analysis of application logs, event logs, security events data & configuration files.</p>
+<p>• A common platform for all searching, filtering, rule writing & reporting functions.</p>
+<p>• A single user console interface for all log management, risk modeling, vulnerability prioritization, incident detection & impact analysis.</p>
+<p>• One console security architecture approach.</p>
+<p><h3>Audience</h3></p>
+<p>This document is intended for members of the United Commercial Bank Ltd, solution architects, and technical team who have direct responsibility for the network infrastructure inside the IT network. In addition, it is advisable that those IT persons responsible for managing Network devices also review this document and provide comments and feedback where applicable.</p>
+<p><h3>Implementation Overview</h3></p>
+<p><h2>Deployment Architecture</h2></p>
+
+
+<img src="siem.png"width="500px"hspace="200px"></img><br>
+<h2 style="color:red">Hardware Details:</h2><br>
+<div>
+<table class="hardware_details">
+<thead style="background-color:cyan;">
+<tr>
+<th>QRadar Hosts</th>
+<th>No of Servers</th>
+<th>Appliance Type</th>
+<th>CPU</th>
+<th>Memory</th>
+<th>Disk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Console</td>
+<td>3</td>
+<td>Physical</td>
+<td>16 Core</td>
+<td>128 GB</td>
+<td>17.5 TB RAID 6 + 1TB RAID 10</td>
+</tr>
+<tr>
+<td>App Host</td>
+<td>2</td>
+<td>Physical</td>
+<td>16 Core</td>
+<td>64 GB</td>
+<td>1TB</td>
+</tr>
+<tr>
+<td>QRadar Network Insight</td>
+<td>1</td>
+<td>Physical</td>
+<td>18 Core</td>
+<td>128 GB</td>
+<td>480 GB RAID 1</td>
+</tr>
+<tr>
+<td>Risk Manager</td>
+<td>1</td>
+<td>VM</td>
+<td>16 Core</td>
+<td>32 GB</td>
+<td>500 GB</td>
+</tr>
+<tr>
+<td>Forensic Processor</td>
+<td>1</td>
+<td>Physical</td>
+<td>12 Core</td>
+<td>128 GB</td>
+<td>20 TB</td>
+</tr>
+<tr>
+<td>QRadar Network PCAP</td>
+<td>1</td>
+<td>Physical</td>
+<td>18 Core</td>
+<td>128 GB</td>
+<td>88 TB RAID 5
++ 1 TB RAID 1
+</td>
+</tr>
+</tbody>
+</table>
+</div><br>
+<h2 style="color:red">Network Details:</h2><br>
+
+
+<div >
+<table ID="network_details">
+<thead style="background-color:cyan;">
+<tr>
+<th>S No.</th>
+<th>Component</th>
+<th>Hostname</th>
+<th>IP Address</th>
+<th>Virtual IP</th>
+<th>Subnet Mask</th>
+<th>Gateway</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="6"style="text-align:left;color:#00008B">Data Center</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>Console Primary</td>
+<td></td>
+<td></td>
+<td rowspan="2"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Console Secondary</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>App Host Primary</td>
+<td></td>
+<td></td>
+<td rowspan="2"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>App Host Secondary</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>QRadar Network Insight</td>
+<td></td>
+<td></td>
+<td>NA</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Risk Manager</td>
+<td></td>
+<td></td>
+<td>NA</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>Forensic Processor</td>
+<td></td>
+<td></td>
+<td>NA</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td>QRadar Network PCAP</td>
+<td></td>
+<td></td>
+<td>NA</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="7"style="text-align:left;color:#00008B">Disaster Recovery Data Center</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Console (AIO)</td>
+<td></td>
+<td></td>
+<td>NA</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div><br>
+
+
+<div>
+<h2>QRadar Network Insights:</h2><br>
+<table>
+<thead style="background-color:cyan;">
+<tr>
+<th>Introduction</th>
+<th>Site Readiness Check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Secbounty Deliverables</td>
+<td><pre style="text-align:left;font-family:Times;">1.	Need to Verify Hardware specification of Server.
+2.	Need to Verify BIOS settings of Server
+3.	Need to share the QRadar SIEM 7.4.2 ISO & Fixpack 3 sfs file with the UCB team.
+4.	Need to Install the QRadar Network Insight.
+5.	Install QRadar QNI component.
+6.	Once the Secbounty team gets the iDRAC access, they will need to configure Management IP, 
+	Domain Name, SMTP server IP, DNS Servers, NTP Server.
+7.	Secbounty team will upload and install ISO on the server using the iDRAC console.
+8.	Add this appliance as a QNI host from the console
+9.	LLD document will be shared containing the deployment details of QRadar QNI</pre>
+</td>
+</tr>
+<tr>
+<td>Customer Responsibilities</td>
+<td><pre style="text-align:left;font-family:Times;">1.	UCB team should be able to access the iDRAC console.
+2.	UCB team needs to load the ISO file onto the server using a network or USB Flash drive.
+3.	UCB team need to provide the IP address, Domain Name, SMTP server IP for Email notification, DNS Server IP, 
+	Management IP, and NTP Server IP to the SECBOUNTY Team
+4.	UCB team needs to provide the console, SSH, and HTTPS access to the QRadar Server.
+	Port opening should be done as requested in the sheet.
+</pre></td>
+
+</tr>
+<tr>
+<td>Acceptance Criteria</td>
+<td>Secbounty and UCB team should be able to log in to the QRadar Network Packet Capture Host through SSH.</td>
+</tr>
+
+</tbody>
+
+
+
+</table>
+
+</div><br>
+<h2>Milestone 1: QRadar Installation</h2>
+<pre style="text-align:left;font-family:Times;">Assumptions and Dependencies by UCB
+
+Physical Appliance
+
+	•	Network configuration for Dell / Lenovo “iDrac / IMM” must be completed from the Effective date of this SoW.
+	•	Dell / Lenovo Server “iDrac / IMM” console is accessible
+	•	“iDrac / IMM” console shall be share through ‘Zoom Meeting’
+	•	Raid 6 must be configured for the HDD/SDD redundancy.
+	•	Only 1 virtual drive must be available after RAID configuration, if there is more than one virtual drive, Red Hat
+		Enterprise Linux Server V7.7 Binary ISO will also be required to be downloaded and made available for mounting on the server.
+	•	QRadar ISO file must be available on the remote system which can be mounted on the Dell / Lenovo server for installation.
+	•	For non HA hosts One IP address must be available during the installation.
+	•	For HA hosts three IP addresses for primary and secondary servers and virtual IP addresses must be available during the installation.
+	•	Subnet mask, default gateway, FQDN, DNS Address, NTP, and SMTP addresses must be available during the installation.
+	•	For non HA hosts port 443 and 22 for provided IP address should be allowed and accessible.
+	•	For HA hosts port 443 and 22 for Primary, Secondary, and Virtual IP should be allowed and accessible.
+	•	For non HA hosts, two interfaces will be required for the deployment, which are
+	o	“iDrac / IMM” for appliance management
+	o	QRadar management interface
+	•	For HA hosts three interfaces will be required for the deployment, which are
+	o	“iDrac / IMM” for appliance management
+	o	QRadar management interface
+	o	QRadar HA Sync interface
+
+Virtual Appliance
+
+	•	Virtual Machine must be created with the configuration provided by the IBM
+	•	VMWare Center / vSphere console shall be shared through 'Zoom Meeting'
+	•	QRadar ISO file must be available on the datastore and mounted on the Virtual Machine
+	•	One IP address must be available during the installation.
+	•	Subnet mask, default gateway, FQDN, DNS Address, NTP, and SMTP addresses must be available during the installation.
+	•	Port 443 and 22 for provided IP address should be allowed and accessible.
+</pre>
+</body>
+
+
+</html>
